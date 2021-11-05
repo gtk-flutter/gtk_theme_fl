@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 class Flgtk {
   static const MethodChannel _channel = MethodChannel('flgtk');
 
-  static Future<dynamic> get platformVersion async {
-    final Map<Object?, Object?>? version =
-        await _channel.invokeMethod('getPlatformVersion');
-    debugPrint(version.toString());
+  static Future<dynamic> getThemeData() async {
+    final Map<Object?, Object?>? data =
+        await _channel.invokeMethod('getThemeData');
+    debugPrint(data.toString());
 
-    return version;
+    return data;
   }
 }

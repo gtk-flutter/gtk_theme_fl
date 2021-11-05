@@ -35,7 +35,7 @@ static void flgtk_plugin_handle_method_call(
 
   const gchar* method = fl_method_call_get_name(method_call);
 
-  if (strcmp(method, "getPlatformVersion") == 0) {
+  if (strcmp(method, "getThemeData") == 0) {
     GtkSettings *settings;
     gchar *theme_name;
     settings = gtk_settings_get_default();
