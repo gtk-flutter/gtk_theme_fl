@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/simrat39/dev/flgtk/example/build/linux/x64/release",
+  "command": "/usr/bin/clang++ -DAPPLICATION_ID=\\\"com.simrat39.flgtk\\\" -DFLUTTER_PLUGIN_IMPL -DNDEBUG -Dflgtk_plugin_EXPORTS -I/home/simrat39/dev/flgtk/example/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/lzo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cloudproviders -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/dbus-1.0/include -isystem /usr/include/at-spi-2.0 -O3 -DNDEBUG -fPIC -fvisibility=hidden -Wall -Werror -O3 -pthread -o plugins/flgtk/CMakeFiles/flgtk_plugin.dir/flgtk_plugin.cc.o -c /home/simrat39/dev/flgtk/example/linux/flutter/ephemeral/.plugin_symlinks/flgtk/linux/flgtk_plugin.cc",
+  "file": "/home/simrat39/dev/flgtk/example/linux/flutter/ephemeral/.plugin_symlinks/flgtk/linux/flgtk_plugin.cc"
+}
+]
