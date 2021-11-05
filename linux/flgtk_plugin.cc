@@ -46,19 +46,44 @@ static void flgtk_plugin_handle_method_call(
     GtkStyleContext* context = gtk_style_context_new();
     gtk_style_context_add_provider(context, (GtkStyleProvider*) provider, 800);
 
-    GdkRGBA theme_bg_color;
-    gtk_style_context_lookup_color(context, "theme_bg_color", &theme_bg_color);
-
-    GdkRGBA theme_fg_color;
+    g_autofree GdkRGBA theme_fg_color;
     gtk_style_context_lookup_color(context, "theme_fg_color", &theme_fg_color);
 
-    GdkRGBA theme_selected_bg_color;
+    g_autofree GdkRGBA theme_text_color;
+    gtk_style_context_lookup_color(context, "theme_text_color", &theme_text_color);
+
+    g_autofree GdkRGBA theme_bg_color;
+    gtk_style_context_lookup_color(context, "theme_bg_color", &theme_bg_color);
+
+    g_autofree GdkRGBA theme_base_color;
+    gtk_style_context_lookup_color(context, "theme_base_color", &theme_base_color);
+
+    g_autofree GdkRGBA theme_selected_bg_color;
     gtk_style_context_lookup_color(context, "theme_selected_bg_color", &theme_selected_bg_color);
 
+    g_autofree GdkRGBA theme_selected_fg_color;
+    gtk_style_context_lookup_color(context, "theme_selected_fg_color", &theme_selected_fg_color);
+
+    /* these are pretty self explicative */
+    g_autofree GdkRGBA warning_color;
+    g_autofree GdkRGBA error_color;
+    g_autofree GdkRGBA success_color;
+    gtk_style_context_lookup_color(context, "warning_color", &warning_color);
+    gtk_style_context_lookup_color(context, "error_color", &error_color);
+    gtk_style_context_lookup_color(context, "success_color", &success_color);
+
     g_autoptr(FlValue) result = fl_value_new_map();
-    fl_value_set_string(result, "base_color", fl_value_new_int(get_color_int_from_RGBA(&theme_bg_color)));
+    fl_value_set_string(result, "name", fl_value_new_string(theme_name));
     fl_value_set_string(result, "theme_fg_color", fl_value_new_int(get_color_int_from_RGBA(&theme_fg_color)));
+    fl_value_set_string(result, "theme_text_color", fl_value_new_int(get_color_int_from_RGBA(&theme_text_color)));
+    fl_value_set_string(result, "theme_bg_color", fl_value_new_int(get_color_int_from_RGBA(&theme_bg_color)));
+    fl_value_set_string(result, "theme_base_color", fl_value_new_int(get_color_int_from_RGBA(&theme_base_color)));
     fl_value_set_string(result, "theme_selected_bg_color", fl_value_new_int(get_color_int_from_RGBA(&theme_selected_bg_color)));
+    fl_value_set_string(result, "theme_selected_fg_color", fl_value_new_int(get_color_int_from_RGBA(&theme_selected_fg_color)));
+
+    fl_value_set_string(result, "warning_color", fl_value_new_int(get_color_int_from_RGBA(&warning_color)));
+    fl_value_set_string(result, "error_color", fl_value_new_int(get_color_int_from_RGBA(&error_color)));
+    fl_value_set_string(result, "success_color", fl_value_new_int(get_color_int_from_RGBA(&success_color)));
 
     response = FL_METHOD_RESPONSE(fl_method_success_response_new(result));
   } else {

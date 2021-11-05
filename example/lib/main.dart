@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    color = (await Flgtk.platformVersion)['base_color'] as int;
+    color = (await Flgtk.platformVersion)['theme_bg_color'] as int;
     fg = (await Flgtk.platformVersion)['theme_selected_bg_color'] as int;
     setState(() {});
   }
