@@ -46,28 +46,28 @@ static void flgtk_plugin_handle_method_call(
     GtkStyleContext* context = gtk_style_context_new();
     gtk_style_context_add_provider(context, (GtkStyleProvider*) provider, 800);
 
-    g_autofree GdkRGBA theme_fg_color;
+    GdkRGBA theme_fg_color;
     gtk_style_context_lookup_color(context, "theme_fg_color", &theme_fg_color);
 
-    g_autofree GdkRGBA theme_text_color;
+    GdkRGBA theme_text_color;
     gtk_style_context_lookup_color(context, "theme_text_color", &theme_text_color);
 
-    g_autofree GdkRGBA theme_bg_color;
+    GdkRGBA theme_bg_color;
     gtk_style_context_lookup_color(context, "theme_bg_color", &theme_bg_color);
 
-    g_autofree GdkRGBA theme_base_color;
+    GdkRGBA theme_base_color;
     gtk_style_context_lookup_color(context, "theme_base_color", &theme_base_color);
 
-    g_autofree GdkRGBA theme_selected_bg_color;
+    GdkRGBA theme_selected_bg_color;
     gtk_style_context_lookup_color(context, "theme_selected_bg_color", &theme_selected_bg_color);
 
-    g_autofree GdkRGBA theme_selected_fg_color;
+    GdkRGBA theme_selected_fg_color;
     gtk_style_context_lookup_color(context, "theme_selected_fg_color", &theme_selected_fg_color);
 
     /* these are pretty self explicative */
-    g_autofree GdkRGBA warning_color;
-    g_autofree GdkRGBA error_color;
-    g_autofree GdkRGBA success_color;
+    GdkRGBA warning_color;
+    GdkRGBA error_color;
+    GdkRGBA success_color;
     gtk_style_context_lookup_color(context, "warning_color", &warning_color);
     gtk_style_context_lookup_color(context, "error_color", &error_color);
     gtk_style_context_lookup_color(context, "success_color", &success_color);
