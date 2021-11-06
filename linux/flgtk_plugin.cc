@@ -38,6 +38,8 @@ static FlValue* get_font() {
     PangoFontDescription* font = (PangoFontDescription*) g_value_peek_pointer(&value);
     char* ret =  pango_font_description_to_string(font);
 
+    gtk_widget_destroy(label);
+
     return fl_value_new_string(ret);
 }
 
