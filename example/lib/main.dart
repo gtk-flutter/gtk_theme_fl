@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  GtkThemeData? themeData;
+  GtkThemeData themeData = GtkThemeData(name: "Default");
 
   @override
   void initState() {
@@ -32,15 +32,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: themeData.themeData,
       home: Scaffold(
-        backgroundColor: Color(themeData?.theme_base_color ?? 0),
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Center(
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Color(themeData?.theme_selected_bg_color ?? 0)),
               onPressed: () async {
                 initPlatformState();
               },
