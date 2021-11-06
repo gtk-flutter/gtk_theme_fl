@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flgtk/flgtk.dart';
 
 void main() {
@@ -16,18 +15,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int? color = 0xff000000;
-  int? fg = 0xffff0000;
+  GtkThemeData? themeData;
 
   @override
   void initState() {
+    initPlatformState();
     super.initState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    color = (await Flgtk.getThemeData())['theme_bg_color'] as int;
-    fg = (await Flgtk.getThemeData())['theme_selected_bg_color'] as int;
+    themeData = await GtkThemeData.initialize();
     setState(() {});
   }
 
@@ -35,13 +33,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(color ?? 0),
+        backgroundColor: Color(themeData?.theme_base_color ?? 0),
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Center(
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Color(fg ?? 0xffff0000)),
+              style: ElevatedButton.styleFrom(
+                  primary: Color(themeData?.theme_selected_bg_color ?? 0)),
               onPressed: () async {
                 initPlatformState();
               },
