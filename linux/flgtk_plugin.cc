@@ -2,6 +2,7 @@
 
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
+#include <pango/pango-font.h>
 #include <sys/utsname.h>
 #include <iostream>
 
@@ -25,6 +26,19 @@ static int get_color_int_from_RGBA(GdkRGBA* rgba) {
     int b = rgba->blue * 255;
 
     return (a & 0xff) << 24 | (r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff);
+}
+
+static FlValue* get_font() {
+    GtkWidget* label = gtk_label_new("Label!");
+    GtkStyleContext* labelContext = gtk_widget_get_style_context(label);
+
+    GValue value = G_VALUE_INIT;
+    gtk_style_context_get_property(labelContext, "font", GTK_STATE_FLAG_NORMAL, &value);
+
+    PangoFontDescription* font = (PangoFontDescription*) g_value_peek_pointer(&value);
+    char* ret =  pango_font_description_to_string(font);
+
+    return fl_value_new_string(ret);
 }
 
 // Called when a method call is received from Flutter.
@@ -84,6 +98,11 @@ static void flgtk_plugin_handle_method_call(
     fl_value_set_string(result, "warning_color", fl_value_new_int(get_color_int_from_RGBA(&warning_color)));
     fl_value_set_string(result, "error_color", fl_value_new_int(get_color_int_from_RGBA(&error_color)));
     fl_value_set_string(result, "success_color", fl_value_new_int(get_color_int_from_RGBA(&success_color)));
+
+    // GENERIC COLORS END
+    // WIDGET SPECIFIC STUFF STARTS
+    g_autoptr(FlValue) font = get_font();
+    fl_value_set_string(result, "font", font);
 
     response = FL_METHOD_RESPONSE(fl_method_success_response_new(result));
   } else {

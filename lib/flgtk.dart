@@ -20,6 +20,8 @@ class GtkThemeData {
   int error_color;
   int success_color;
 
+  String font;
+
   GtkThemeData({
     required this.name,
     this.theme_fg_color = 0xff,
@@ -31,6 +33,7 @@ class GtkThemeData {
     this.warning_color = 0xff,
     this.error_color = 0xff,
     this.success_color = 0xff,
+    this.font = "",
   });
 
   ThemeData get themeData => ThemeData(
@@ -56,6 +59,7 @@ class GtkThemeData {
       warning_color: data["warning_color"] as int,
       error_color: data["error_color"] as int,
       success_color: data["success_color"] as int,
+      font: data["font"] as String,
     );
   }
 }
