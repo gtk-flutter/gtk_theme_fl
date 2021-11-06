@@ -43,6 +43,44 @@ static FlValue* get_font() {
     return fl_value_new_string(ret);
 }
 
+/* static void g_value_print(GValue* value) { */
+/*     gchar * strVal = g_strdup_value_contents (value); */
+/*     g_print ("gvalue: %s\n", strVal); */
+/*     free (strVal); */
+/* } */
+
+static FlValue* get_button_data() {
+    GtkWidget* button = gtk_button_new();
+    GtkStyleContext*context = gtk_widget_get_style_context(button);
+
+    GValue normal_bg = G_VALUE_INIT;
+    GValue active_bg = G_VALUE_INIT;
+    GValue selected_bg = G_VALUE_INIT;
+    GValue focused_bg = G_VALUE_INIT;
+    GValue checked_bg = G_VALUE_INIT;
+
+    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_NORMAL, &normal_bg);
+    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_ACTIVE, &active_bg);
+    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_SELECTED, &selected_bg);
+    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_FOCUSED, &focused_bg);
+    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_CHECKED, &checked_bg);
+
+    GdkRGBA* normal_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&normal_bg);
+    GdkRGBA* active_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&active_bg);
+    GdkRGBA* selected_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&selected_bg);
+    GdkRGBA* focused_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&focused_bg);
+    GdkRGBA* checked_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&checked_bg);
+
+    FlValue* result = fl_value_new_map();
+    fl_value_set_string(result, "normal_bg", fl_value_new_int(get_color_int_from_RGBA(normal_bg_rgba)));
+    fl_value_set_string(result, "active_bg", fl_value_new_int(get_color_int_from_RGBA(active_bg_rgba)));
+    fl_value_set_string(result, "selected_bg", fl_value_new_int(get_color_int_from_RGBA(selected_bg_rgba)));
+    fl_value_set_string(result, "focused_bg", fl_value_new_int(get_color_int_from_RGBA(focused_bg_rgba)));
+    fl_value_set_string(result, "checked_bg", fl_value_new_int(get_color_int_from_RGBA(checked_bg_rgba)));
+
+    return result;
+}
+
 // Called when a method call is received from Flutter.
 static void flgtk_plugin_handle_method_call(
     FlgtkPlugin* self,
@@ -100,6 +138,9 @@ static void flgtk_plugin_handle_method_call(
     fl_value_set_string(result, "warning_color", fl_value_new_int(get_color_int_from_RGBA(&warning_color)));
     fl_value_set_string(result, "error_color", fl_value_new_int(get_color_int_from_RGBA(&error_color)));
     fl_value_set_string(result, "success_color", fl_value_new_int(get_color_int_from_RGBA(&success_color)));
+
+    g_autoptr(FlValue) button_data = get_button_data();
+    fl_value_set_string(result, "button", button_data);
 
     // GENERIC COLORS END
     // WIDGET SPECIFIC STUFF STARTS

@@ -5,6 +5,22 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class GtkButtonThemeData {
+  final int normal_bg;
+  final int active_bg;
+  final int selected_bg;
+  final int focused_bg;
+  final int checked_bg;
+
+  const GtkButtonThemeData({
+    required this.normal_bg,
+    required this.active_bg,
+    required this.selected_bg,
+    required this.focused_bg,
+    required this.checked_bg,
+  });
+}
+
 class GtkThemeData {
   static const MethodChannel _channel = MethodChannel('flgtk');
 
@@ -20,6 +36,8 @@ class GtkThemeData {
   int error_color;
   int success_color;
 
+  GtkButtonThemeData buttonThemeData;
+
   String font;
 
   GtkThemeData({
@@ -34,6 +52,13 @@ class GtkThemeData {
     this.error_color = 0xff,
     this.success_color = 0xff,
     this.font = "",
+    this.buttonThemeData = const GtkButtonThemeData(
+      normal_bg: 0xff,
+      active_bg: 0xff,
+      selected_bg: 0xff,
+      focused_bg: 0xff,
+      checked_bg: 0xff,
+    ),
   });
 
   ThemeData get themeData => ThemeData(
@@ -60,6 +85,13 @@ class GtkThemeData {
       error_color: data["error_color"] as int,
       success_color: data["success_color"] as int,
       font: data["font"] as String,
+      buttonThemeData: GtkButtonThemeData(
+        normal_bg: (data["button"]! as Map)["normal_bg"],
+        active_bg: (data["button"]! as Map)["active_bg"],
+        selected_bg: (data["button"]! as Map)["selected_bg"],
+        focused_bg: (data["button"]! as Map)["focused_bg"],
+        checked_bg: (data["button"]! as Map)["checked_bg"],
+      ),
     );
   }
 }

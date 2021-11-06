@@ -39,6 +39,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(themeData.buttonThemeData.checked_bg),
+                /* onPrimary: Color(themeData.buttonThemeData.selected_bg), */
+              ),
               onPressed: () async {
                 initPlatformState();
               },
