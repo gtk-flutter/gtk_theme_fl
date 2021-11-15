@@ -1,4 +1,4 @@
-name: flgtk_example
+name: gtk_theme_fl_example
 description: Demonstrates how to use the flgtk plugin.
 
 # The following line prevents the package from being accidentally published to
@@ -18,7 +18,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flgtk:
+  gtk_theme_fl:
     # When depending on this package from a real application you should use:
     #   flgtk: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

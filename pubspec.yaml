@@ -1,4 +1,4 @@
-name: flgtk
+name: gtk_theme_fl
 description: A new flutter plugin project.
 version: 0.0.1
 homepage:
@@ -28,7 +28,7 @@ flutter:
   plugin:
     platforms:
       linux:
-        pluginClass: FlgtkPlugin
+        pluginClass: GtkThemeFlPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

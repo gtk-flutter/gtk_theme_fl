@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
-set(PROJECT_NAME "flgtk")
+set(PROJECT_NAME "gtk_theme_fl")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed
-set(PLUGIN_NAME "flgtk_plugin")
+set(PLUGIN_NAME "gtk_theme_fl_plugin")
 
 add_library(${PLUGIN_NAME} SHARED
-  "flgtk_plugin.cc"
+  "gtk_theme_fl_plugin.cc"
 )
 apply_standard_settings(${PLUGIN_NAME})
 set_target_properties(${PLUGIN_NAME} PROPERTIES
@@ -21,7 +21,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE flutter)
 target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 
 # List of absolute paths to libraries that should be bundled with the plugin
-set(flgtk_bundled_libraries
+set(gtk_theme_fl_bundled_libraries
   ""
   PARENT_SCOPE
 )

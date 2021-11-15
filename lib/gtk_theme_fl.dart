@@ -2,12 +2,12 @@
 
 import 'dart:async';
 
-import 'package:flgtk/gtk_button_theme_data.dart';
+import 'package:gtk_theme_fl/gtk_button_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class GtkThemeData {
-  static const MethodChannel _channel = MethodChannel('flgtk');
+  static const MethodChannel _channel = MethodChannel('gtk_theme_fl');
 
   String name;
   int theme_fg_color;

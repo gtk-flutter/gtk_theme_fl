@@ -1,4 +1,4 @@
-#include "include/flgtk/flgtk_plugin.h"
+#include "include/gtk_theme_fl/gtk_theme_fl_plugin.h"
 
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
@@ -8,16 +8,16 @@
 
 #include <cstring>
 
-#define FLGTK_PLUGIN(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST((obj), flgtk_plugin_get_type(), \
-                              FlgtkPlugin))
+#define GTK_THEME_FL_PLUGIN(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), gtk_theme_fl_plugin_get_type(), \
+                              GtkThemeFlPlugin))
 
-struct _FlgtkPlugin {
+struct _GtkThemeFlPlugin {
   GObject parent_instance;
   FlPluginRegistrar* registrar;
 };
 
-G_DEFINE_TYPE(FlgtkPlugin, flgtk_plugin, g_object_get_type())
+G_DEFINE_TYPE(GtkThemeFlPlugin, gtk_theme_fl_plugin, g_object_get_type())
 
 static int get_color_int_from_RGBA(GdkRGBA* rgba) {
     int a = rgba->alpha * 255;
@@ -105,8 +105,8 @@ static FlValue* get_button_data() {
 }
 
 // Called when a method call is received from Flutter.
-static void flgtk_plugin_handle_method_call(
-    FlgtkPlugin* self,
+static void gtk_theme_fl_plugin_handle_method_call(
+    GtkThemeFlPlugin* self,
     FlMethodCall* method_call) {
   g_autoptr(FlMethodResponse) response = nullptr;
 
@@ -178,32 +178,32 @@ static void flgtk_plugin_handle_method_call(
   fl_method_call_respond(method_call, response, nullptr);
 }
 
-static void flgtk_plugin_dispose(GObject* object) {
-  G_OBJECT_CLASS(flgtk_plugin_parent_class)->dispose(object);
+static void gtk_theme_fl_plugin_dispose(GObject* object) {
+  G_OBJECT_CLASS(gtk_theme_fl_plugin_parent_class)->dispose(object);
 }
 
-static void flgtk_plugin_class_init(FlgtkPluginClass* klass) {
-  G_OBJECT_CLASS(klass)->dispose = flgtk_plugin_dispose;
+static void gtk_theme_fl_plugin_class_init(GtkThemeFlPluginClass* klass) {
+  G_OBJECT_CLASS(klass)->dispose = gtk_theme_fl_plugin_dispose;
 }
 
-static void flgtk_plugin_init(FlgtkPlugin* self) {}
+static void gtk_theme_fl_plugin_init(GtkThemeFlPlugin* self) {}
 
 static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data) {
-  FlgtkPlugin* plugin = FLGTK_PLUGIN(user_data);
-  flgtk_plugin_handle_method_call(plugin, method_call);
+  GtkThemeFlPlugin* plugin = GTK_THEME_FL_PLUGIN(user_data);
+  gtk_theme_fl_plugin_handle_method_call(plugin, method_call);
 }
 
-void flgtk_plugin_register_with_registrar(FlPluginRegistrar* registrar) {
-  FlgtkPlugin* plugin = FLGTK_PLUGIN(
-      g_object_new(flgtk_plugin_get_type(), nullptr));
+void gtk_theme_fl_plugin_register_with_registrar(FlPluginRegistrar* registrar) {
+  GtkThemeFlPlugin* plugin = GTK_THEME_FL_PLUGIN(
+      g_object_new(gtk_theme_fl_plugin_get_type(), nullptr));
 
   plugin->registrar = FL_PLUGIN_REGISTRAR(g_object_ref(registrar));
 
   g_autoptr(FlStandardMethodCodec) codec = fl_standard_method_codec_new();
   g_autoptr(FlMethodChannel) channel =
       fl_method_channel_new(fl_plugin_registrar_get_messenger(registrar),
-                            "flgtk",
+                            "gtk_theme_fl",
                             FL_METHOD_CODEC(codec));
   fl_method_channel_set_method_call_handler(channel, method_call_cb,
                                             g_object_ref(plugin),

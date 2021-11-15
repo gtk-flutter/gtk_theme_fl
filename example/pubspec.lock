@@ -57,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  flgtk:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -81,6 +74,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gtk_theme_fl:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:

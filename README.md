@@ -1,4 +1,4 @@
-# flgtk
+# gtk_theme_fl
 
 A new flutter plugin project.
 

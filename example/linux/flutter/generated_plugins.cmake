@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  flgtk
+  gtk_theme_fl
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

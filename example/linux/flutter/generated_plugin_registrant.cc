@@ -6,10 +6,10 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <flgtk/flgtk_plugin.h>
+#include <gtk_theme_fl/gtk_theme_fl_plugin.h>
 
 void fl_register_plugins(FlPluginRegistry* registry) {
-  g_autoptr(FlPluginRegistrar) flgtk_registrar =
-      fl_plugin_registry_get_registrar_for_plugin(registry, "FlgtkPlugin");
-  flgtk_plugin_register_with_registrar(flgtk_registrar);
+  g_autoptr(FlPluginRegistrar) gtk_theme_fl_registrar =
+      fl_plugin_registry_get_registrar_for_plugin(registry, "GtkThemeFlPlugin");
+  gtk_theme_fl_plugin_register_with_registrar(gtk_theme_fl_registrar);
 }

@@ -1,5 +1,5 @@
-import 'package:flgtk/flgtk.dart';
-import 'package:flgtk_example/ColorBox.dart';
+import 'package:gtk_theme_fl/gtk_theme_fl.dart';
+import 'package:gtk_theme_fl_example/ColorBox.dart';
 import 'package:flutter/widgets.dart';
 
 class ExportedColorsRow extends StatelessWidget {

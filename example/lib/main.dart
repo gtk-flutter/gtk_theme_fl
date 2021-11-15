@@ -1,11 +1,11 @@
-import 'package:flgtk_example/button_bg_row.dart';
-import 'package:flgtk_example/button_fg_row.dart';
-import 'package:flgtk_example/common_colors_row.dart';
-import 'package:flgtk_example/exported_colors_row.dart';
+import 'package:gtk_theme_fl_example/button_bg_row.dart';
+import 'package:gtk_theme_fl_example/button_fg_row.dart';
+import 'package:gtk_theme_fl_example/common_colors_row.dart';
+import 'package:gtk_theme_fl_example/exported_colors_row.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flgtk/flgtk.dart';
+import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 
 void main() {
   runApp(const MyApp());
