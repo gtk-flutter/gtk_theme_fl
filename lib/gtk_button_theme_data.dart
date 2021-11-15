@@ -34,6 +34,23 @@ class GtkButtonThemeData {
     required this.checked_fg,
   });
 
+  factory GtkButtonThemeData.fromMap(Map<Object?, Object?> map) {
+    return GtkButtonThemeData(
+      normal_bg: map["normal_bg"] as int,
+      normal_fg: map["normal_fg"] as int,
+      active_bg: map["active_bg"] as int,
+      active_fg: map["active_fg"] as int,
+      prelight_bg: map["prelight_bg"] as int,
+      prelight_fg: map["prelight_fg"] as int,
+      selected_bg: map["selected_bg"] as int,
+      selected_fg: map["selected_fg"] as int,
+      focused_bg: map["focused_bg"] as int,
+      focused_fg: map["focused_fg"] as int,
+      checked_bg: map["checked_bg"] as int,
+      checked_fg: map["checked_fg"] as int,
+    );
+  }
+
   static const GtkButtonThemeData empty = GtkButtonThemeData(
     normal_bg: 0xff,
     normal_fg: 0xff,

@@ -64,20 +64,7 @@ class GtkThemeData {
       error_color: data["error_color"] as int,
       success_color: data["success_color"] as int,
       font: data["font"] as String,
-      buttonThemeData: GtkButtonThemeData(
-        normal_bg: (data["button"]! as Map)["normal_bg"],
-        normal_fg: (data["button"]! as Map)["normal_fg"],
-        active_bg: (data["button"]! as Map)["active_bg"],
-        active_fg: (data["button"]! as Map)["active_fg"],
-        prelight_bg: (data["button"]! as Map)["prelight_bg"],
-        prelight_fg: (data["button"]! as Map)["prelight_fg"],
-        selected_bg: (data["button"]! as Map)["selected_bg"],
-        selected_fg: (data["button"]! as Map)["selected_fg"],
-        focused_bg: (data["button"]! as Map)["focused_bg"],
-        focused_fg: (data["button"]! as Map)["focused_fg"],
-        checked_bg: (data["button"]! as Map)["checked_bg"],
-        checked_fg: (data["button"]! as Map)["checked_fg"],
-      ),
+      buttonThemeData: GtkButtonThemeData.fromMap(data["button"]! as Map),
     );
   }
 }
