@@ -54,7 +54,7 @@ static int get_color_from_widget(GtkWidget* widget, const gchar* property, GtkSt
 
     GtkStyleContext* context = gtk_widget_get_style_context(widget);
 
-    gtk_style_context_get_property(context, "background-color", state, &color);
+    gtk_style_context_get_property(context, property, state, &color);
 
     GdkRGBA* color_rgba = (GdkRGBA*)g_value_peek_pointer(&color);
 
