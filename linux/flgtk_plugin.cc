@@ -49,34 +49,37 @@ static FlValue* get_font() {
 /*     free (strVal); */
 /* } */
 
+static int get_color_from_widget(GtkWidget* widget, const gchar* property, GtkStateFlags state) {
+    GValue color = G_VALUE_INIT;
+
+    GtkStyleContext* context = gtk_widget_get_style_context(widget);
+
+    gtk_style_context_get_property(context, "background-color", state, &color);
+
+    GdkRGBA* color_rgba = (GdkRGBA*)g_value_peek_pointer(&color);
+
+    int ret = get_color_int_from_RGBA(color_rgba);
+
+    gdk_rgba_free(color_rgba);
+
+    return ret;
+}
+
 static FlValue* get_button_data() {
     GtkWidget* button = gtk_button_new();
-    GtkStyleContext*context = gtk_widget_get_style_context(button);
 
-    GValue normal_bg = G_VALUE_INIT;
-    GValue active_bg = G_VALUE_INIT;
-    GValue selected_bg = G_VALUE_INIT;
-    GValue focused_bg = G_VALUE_INIT;
-    GValue checked_bg = G_VALUE_INIT;
-
-    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_NORMAL, &normal_bg);
-    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_ACTIVE, &active_bg);
-    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_SELECTED, &selected_bg);
-    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_FOCUSED, &focused_bg);
-    gtk_style_context_get_property(context, "background-color", GTK_STATE_FLAG_CHECKED, &checked_bg);
-
-    GdkRGBA* normal_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&normal_bg);
-    GdkRGBA* active_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&active_bg);
-    GdkRGBA* selected_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&selected_bg);
-    GdkRGBA* focused_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&focused_bg);
-    GdkRGBA* checked_bg_rgba = (GdkRGBA*)g_value_peek_pointer(&checked_bg);
+    int normal_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_NORMAL);
+    int active_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_ACTIVE);
+    int selected_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_SELECTED);
+    int focused_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_FOCUSED);
+    int checked_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_CHECKED);
 
     FlValue* result = fl_value_new_map();
-    fl_value_set_string(result, "normal_bg", fl_value_new_int(get_color_int_from_RGBA(normal_bg_rgba)));
-    fl_value_set_string(result, "active_bg", fl_value_new_int(get_color_int_from_RGBA(active_bg_rgba)));
-    fl_value_set_string(result, "selected_bg", fl_value_new_int(get_color_int_from_RGBA(selected_bg_rgba)));
-    fl_value_set_string(result, "focused_bg", fl_value_new_int(get_color_int_from_RGBA(focused_bg_rgba)));
-    fl_value_set_string(result, "checked_bg", fl_value_new_int(get_color_int_from_RGBA(checked_bg_rgba)));
+    fl_value_set_string(result, "normal_bg", fl_value_new_int(normal_bg));
+    fl_value_set_string(result, "active_bg", fl_value_new_int(active_bg));
+    fl_value_set_string(result, "selected_bg", fl_value_new_int(selected_bg));
+    fl_value_set_string(result, "focused_bg", fl_value_new_int(focused_bg));
+    fl_value_set_string(result, "checked_bg", fl_value_new_int(checked_bg));
 
     return result;
 }
