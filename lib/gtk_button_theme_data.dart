@@ -33,4 +33,19 @@ class GtkButtonThemeData {
     required this.checked_bg,
     required this.checked_fg,
   });
+
+  static const GtkButtonThemeData empty = GtkButtonThemeData(
+    normal_bg: 0xff,
+    normal_fg: 0xff,
+    active_bg: 0xff,
+    active_fg: 0xff,
+    prelight_bg: 0xff,
+    prelight_fg: 0xff,
+    selected_bg: 0xff,
+    selected_fg: 0xff,
+    focused_bg: 0xff,
+    focused_fg: 0xff,
+    checked_bg: 0xff,
+    checked_fg: 0xff,
+  );
 }
