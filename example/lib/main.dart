@@ -1,3 +1,6 @@
+import 'package:flgtk_example/ColorBox.dart';
+import 'package:flgtk_example/common_colors_row.dart';
+import 'package:flgtk_example/exported_colors_row.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -32,21 +35,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: themeData.themeData,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color(themeData.buttonThemeData.checked_bg),
-                /* onPrimary: Color(themeData.buttonThemeData.selected_bg), */
-              ),
-              onPressed: () async {
-                initPlatformState();
-              },
-              child: const Text("Bruh")),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CommonColorsRow(themeData: themeData),
+              ExportedColorsRow(themeData: themeData),
+            ],
+          ),
         ),
       ),
     );
