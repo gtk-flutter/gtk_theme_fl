@@ -75,13 +75,31 @@ static FlValue* get_button_data() {
     int focused_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_FOCUSED);
     int checked_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_CHECKED);
 
+    int normal_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_NORMAL);
+    int active_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_ACTIVE);
+    int prelight_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_PRELIGHT);
+    int selected_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_SELECTED);
+    int focused_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_FOCUSED);
+    int checked_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_CHECKED);
+
     FlValue* result = fl_value_new_map();
     fl_value_set_string(result, "normal_bg", fl_value_new_int(normal_bg));
+    fl_value_set_string(result, "normal_fg", fl_value_new_int(normal_fg));
+
     fl_value_set_string(result, "active_bg", fl_value_new_int(active_bg));
+    fl_value_set_string(result, "active_fg", fl_value_new_int(active_fg));
+
     fl_value_set_string(result, "prelight_bg", fl_value_new_int(prelight_bg));
+    fl_value_set_string(result, "prelight_fg", fl_value_new_int(prelight_fg));
+
     fl_value_set_string(result, "selected_bg", fl_value_new_int(selected_bg));
+    fl_value_set_string(result, "selected_fg", fl_value_new_int(selected_fg));
+
     fl_value_set_string(result, "focused_bg", fl_value_new_int(focused_bg));
+    fl_value_set_string(result, "focused_fg", fl_value_new_int(focused_fg));
+
     fl_value_set_string(result, "checked_bg", fl_value_new_int(checked_bg));
+    fl_value_set_string(result, "checked_fg", fl_value_new_int(checked_fg));
 
     return result;
 }
