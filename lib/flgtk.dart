@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 class GtkButtonThemeData {
   final int normal_bg;
   final int active_bg;
+  final int prelight_bg;
   final int selected_bg;
   final int focused_bg;
   final int checked_bg;
@@ -15,6 +16,7 @@ class GtkButtonThemeData {
   const GtkButtonThemeData({
     required this.normal_bg,
     required this.active_bg,
+    required this.prelight_bg,
     required this.selected_bg,
     required this.focused_bg,
     required this.checked_bg,
@@ -55,6 +57,7 @@ class GtkThemeData {
     this.buttonThemeData = const GtkButtonThemeData(
       normal_bg: 0xff,
       active_bg: 0xff,
+      prelight_bg: 0xff,
       selected_bg: 0xff,
       focused_bg: 0xff,
       checked_bg: 0xff,
@@ -88,6 +91,7 @@ class GtkThemeData {
       buttonThemeData: GtkButtonThemeData(
         normal_bg: (data["button"]! as Map)["normal_bg"],
         active_bg: (data["button"]! as Map)["active_bg"],
+        prelight_bg: (data["button"]! as Map)["prelight_bg"],
         selected_bg: (data["button"]! as Map)["selected_bg"],
         focused_bg: (data["button"]! as Map)["focused_bg"],
         checked_bg: (data["button"]! as Map)["checked_bg"],

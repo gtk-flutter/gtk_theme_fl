@@ -30,6 +30,10 @@ class ButtonBGRow extends StatelessWidget {
                 name: "active_bg",
               ),
               ColorBox(
+                color: Color(themeData.buttonThemeData.prelight_bg),
+                name: "prelight_bg",
+              ),
+              ColorBox(
                 color: Color(themeData.buttonThemeData.selected_bg),
                 name: "selected_bg",
               ),
