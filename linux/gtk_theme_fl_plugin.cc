@@ -68,19 +68,19 @@ static int get_color_from_widget(GtkWidget* widget, const gchar* property, GtkSt
 static FlValue* get_button_data() {
     GtkWidget* button = gtk_button_new();
 
-    int normal_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_NORMAL);
-    int active_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_ACTIVE);
-    int prelight_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_PRELIGHT);
-    int selected_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_SELECTED);
-    int focused_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_FOCUSED);
-    int checked_bg = get_color_from_widget(button, "background-color", GTK_STATE_FLAG_CHECKED);
+    int normal_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_NORMAL);
+    int active_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_ACTIVE);
+    int prelight_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_PRELIGHT);
+    int selected_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_SELECTED);
+    int focused_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_FOCUSED);
+    int checked_bg = get_color_from_widget(button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_CHECKED);
 
-    int normal_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_NORMAL);
-    int active_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_ACTIVE);
-    int prelight_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_PRELIGHT);
-    int selected_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_SELECTED);
-    int focused_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_FOCUSED);
-    int checked_fg = get_color_from_widget(button, "color", GTK_STATE_FLAG_CHECKED);
+    int normal_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_NORMAL);
+    int active_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_ACTIVE);
+    int prelight_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_PRELIGHT);
+    int selected_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_SELECTED);
+    int focused_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_FOCUSED);
+    int checked_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR, GTK_STATE_FLAG_CHECKED);
 
     FlValue* result = fl_value_new_map();
     fl_value_set_string(result, "normal_bg", fl_value_new_int(normal_bg));
@@ -168,7 +168,7 @@ static void gtk_theme_fl_plugin_handle_method_call(
     // GENERIC COLORS END
     // WIDGET SPECIFIC STUFF STARTS
     g_autoptr(FlValue) font = get_font();
-    fl_value_set_string(result, "font", font);
+    fl_value_set_string(result, GTK_STYLE_PROPERTY_FONT, font);
 
     response = FL_METHOD_RESPONSE(fl_method_success_response_new(result));
   } else {
