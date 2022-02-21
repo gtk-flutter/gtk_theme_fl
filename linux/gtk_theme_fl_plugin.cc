@@ -51,73 +51,22 @@ static FlValue *get_font() {
 /*     free (strVal); */
 /* } */
 
-static int get_color_from_widget(GtkWidget *widget, const gchar *property,
-                                 GtkStateFlags state) {
-  GValue color = G_VALUE_INIT;
+/* static int get_color_from_widget(GtkWidget *widget, const gchar *property, */
+/*                                  GtkStateFlags state) { */
+/*   GValue color = G_VALUE_INIT; */
 
-  GtkStyleContext *context = gtk_widget_get_style_context(widget);
+/*   GtkStyleContext *context = gtk_widget_get_style_context(widget); */
 
-  gtk_style_context_get_property(context, property, state, &color);
+/*   gtk_style_context_get_property(context, property, state, &color); */
 
-  GdkRGBA *color_rgba = (GdkRGBA *)g_value_peek_pointer(&color);
+/*   GdkRGBA *color_rgba = (GdkRGBA *)g_value_peek_pointer(&color); */
 
-  int ret = get_color_int_from_RGBA(color_rgba);
+/*   int ret = get_color_int_from_RGBA(color_rgba); */
 
-  gdk_rgba_free(color_rgba);
+/*   gdk_rgba_free(color_rgba); */
 
-  return ret;
-}
-
-static FlValue *get_button_data() {
-  GtkWidget *button = gtk_button_new();
-
-  int normal_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_NORMAL);
-  int active_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_ACTIVE);
-  int prelight_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_PRELIGHT);
-  int selected_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_SELECTED);
-  int focused_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_FOCUSED);
-  int checked_bg = get_color_from_widget(
-      button, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, GTK_STATE_FLAG_CHECKED);
-
-  int normal_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                        GTK_STATE_FLAG_NORMAL);
-  int active_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                        GTK_STATE_FLAG_ACTIVE);
-  int prelight_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                          GTK_STATE_FLAG_PRELIGHT);
-  int selected_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                          GTK_STATE_FLAG_SELECTED);
-  int focused_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                         GTK_STATE_FLAG_FOCUSED);
-  int checked_fg = get_color_from_widget(button, GTK_STYLE_PROPERTY_COLOR,
-                                         GTK_STATE_FLAG_CHECKED);
-
-  FlValue *result = fl_value_new_map();
-  fl_value_set_string(result, "normal_bg", fl_value_new_int(normal_bg));
-  fl_value_set_string(result, "normal_fg", fl_value_new_int(normal_fg));
-
-  fl_value_set_string(result, "active_bg", fl_value_new_int(active_bg));
-  fl_value_set_string(result, "active_fg", fl_value_new_int(active_fg));
-
-  fl_value_set_string(result, "prelight_bg", fl_value_new_int(prelight_bg));
-  fl_value_set_string(result, "prelight_fg", fl_value_new_int(prelight_fg));
-
-  fl_value_set_string(result, "selected_bg", fl_value_new_int(selected_bg));
-  fl_value_set_string(result, "selected_fg", fl_value_new_int(selected_fg));
-
-  fl_value_set_string(result, "focused_bg", fl_value_new_int(focused_bg));
-  fl_value_set_string(result, "focused_fg", fl_value_new_int(focused_fg));
-
-  fl_value_set_string(result, "checked_bg", fl_value_new_int(checked_bg));
-  fl_value_set_string(result, "checked_fg", fl_value_new_int(checked_fg));
-
-  return result;
-}
+/*   return ret; */
+/* } */
 
 // Called when a method call is received from Flutter.
 static void gtk_theme_fl_plugin_handle_method_call(GtkThemeFlPlugin *self,
@@ -197,9 +146,6 @@ static void gtk_theme_fl_plugin_handle_method_call(GtkThemeFlPlugin *self,
     fl_value_set_string(
         result, "success_color",
         fl_value_new_int(get_color_int_from_RGBA(&success_color)));
-
-    g_autoptr(FlValue) button_data = get_button_data();
-    fl_value_set_string(result, "button", button_data);
 
     // GENERIC COLORS END
     // WIDGET SPECIFIC STUFF STARTS

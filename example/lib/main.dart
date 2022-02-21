@@ -1,5 +1,3 @@
-import 'package:gtk_theme_fl_example/button_bg_row.dart';
-import 'package:gtk_theme_fl_example/button_fg_row.dart';
 import 'package:gtk_theme_fl_example/common_colors_row.dart';
 import 'package:gtk_theme_fl_example/exported_colors_row.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +41,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               CommonColorsRow(themeData: themeData),
               ExportedColorsRow(themeData: themeData),
-              ButtonBGRow(themeData: themeData),
-              ButtonFGRow(themeData: themeData),
+              Text(themeData.font),
             ],
           ),
         ),

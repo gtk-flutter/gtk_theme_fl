@@ -21,8 +21,6 @@ class GtkThemeData {
   int error_color;
   int success_color;
 
-  GtkButtonThemeData buttonThemeData;
-
   String font;
 
   GtkThemeData({
@@ -37,7 +35,6 @@ class GtkThemeData {
     this.error_color = 0xff,
     this.success_color = 0xff,
     this.font = "",
-    this.buttonThemeData = GtkButtonThemeData.empty,
   });
 
   ThemeData get themeData => ThemeData(
@@ -50,7 +47,6 @@ class GtkThemeData {
 
   static Future<GtkThemeData> initialize() async {
     var data = await _getRawData();
-    debugPrint(data.toString());
 
     return GtkThemeData(
       name: data["name"] as String,
@@ -64,7 +60,6 @@ class GtkThemeData {
       error_color: data["error_color"] as int,
       success_color: data["success_color"] as int,
       font: data["font"] as String,
-      buttonThemeData: GtkButtonThemeData.fromMap(data["button"]! as Map),
     );
   }
 }
